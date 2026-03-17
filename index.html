@@ -15,7 +15,6 @@
         body { 
             text-align: center; 
             background-color: #fffafa; 
-            /* 2. 폰트 적용 */
             font-family: 'Gowun Batang', serif; 
             margin: 0; 
             padding-top: 50px; 
@@ -45,8 +44,8 @@
         
         #page2, #page3 { display: none; }
         
-        .btn-wrapper { position: relative; height: 150px; margin-top: 30px; }
-        #noBtn { position: absolute; background-color: #ddd; color: #888; transition: 0.1s; border-radius: 50px; }
+        .btn-wrapper { position: relative; height: 200px; margin-top: 30px; }
+        #noBtn { position: absolute; background-color: #ddd; color: #888; transition: 0.1s; border-radius: 50px; z-index: 10; }
     </style>
 </head>
 <body>
@@ -56,54 +55,3 @@
             <h1>오빠의 26번째 생일을 축하해 ❤️</h1>
             <img src="our.jpg" alt="우리 사진" class="main-img" decoding="async">
             <p>스물하나 스물셋에 만나서<br>스물넷 스물여섯이 되다니! 올해도 행복하자</p>
-            <button onclick="showPage(2)">다음으로 👉</button>
-        </div>
-
-        <div id="page2">
-            <h1>오빠를 향한 나의 마음 ✨</h1>
-            <div class="face-container">
-                <img src="sj.png" alt="내 얼굴" class="face-img" decoding="async">
-                <span class="arrow">💘</span>
-                <img src="op.png" alt="오빠 얼굴" class="face-img" decoding="async">
-            </div>
-            <p>오빠랑 있을 때가 가장 즐겁고 행복해<br>오빠도 그렇지?</p>
-            <p>오래오래 함께하자 🥰</p>
-            <button onclick="showPage(3)">마지막으로 할 말! 👉</button>
-        </div>
-
-        <div id="page3">
-            <h1>마지막으로! 🧐</h1>
-            <p>내년 생일도, 내후년 생일도<br>쭉~ 나랑 같이 보낼 거지?</p>
-            <div class="btn-wrapper">
-                <button onclick="alert('역시 그럴 줄 알았어! ❤️ 내년에도 내가 가장 먼저 축하해줄게!')">당연하지! ❤️</button>
-                <button id="noBtn" onmouseover="moveButton()">아니오</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function showPage(pageNr) {
-            document.getElementById('page1').style.display = 'none';
-            document.getElementById('page2').style.display = 'none';
-            document.getElementById('page3').style.display = 'none';
-            
-            document.getElementById('page1').classList.remove('active');
-            document.getElementById('page2').classList.remove('active');
-            document.getElementById('page3').classList.remove('active');
-
-            const currentPage = document.getElementById('page' + pageNr);
-            currentPage.style.display = 'block';
-            currentPage.classList.add('active');
-        }
-
-        function moveButton() {
-            // 버튼이 도망가는 범위가 너무 넓지 않게 수정
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 100);
-            const noBtn = document.getElementById('noBtn');
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
-        }
-    </script>
-</body>
-</html>
