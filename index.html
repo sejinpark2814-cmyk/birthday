@@ -2,36 +2,51 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>세진이가 호진오빠에게 보내는 메시지 💌</title>
-    <style>
-        body { text-align: center; background-color: #fffafa; font-family: 'Nanum Gothic', sans-serif; margin: 0; padding-top: 50px; overflow-x: hidden; }
-        .container { max-width: 500px; margin: 0 auto; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 15px 35px rgba(255,182,193,0.3); position: relative; }
-        h1 { color: black; font-size: 2em; margin-bottom: 20px; }
-        .main-img { width: 100%; max-width: 280px; border-radius: 20px; margin: 20px 0; border: 3px solid #ffe4e1; }
-        p { line-height: 1.6; color: #666; font-size: 1.1em; }
-        button { padding: 15px 30px; font-size: 1em; cursor: pointer; border-radius: 50px; border: none; background-color: #ffb6c1; color: white; transition: 0.3s; margin-top: 20px; }
-        button:hover { background-color: #ff80ab; transform: scale(1.05); }
-        
-        /* 페이지 전환용 */
-        #page2, #page3 { display: none; }
-        
-        /* 1. 큐피드 화살 애니메이션 스타일 */
-        .face-container { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; position: relative; }
-        .face-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #ffb6c1; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .arrow { font-size: 2em; color: #ff4081; position: absolute; left: 110px; top: 50%; transform: translateY(-50%); opacity: 0; }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오빠의 26번째 생일을 축하해 ❤️</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="preload" as="image" href="our.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="sj.png">
+    <link rel="preload" as="image" href="op.png">
+
+    <style>
+        body { 
+            text-align: center; 
+            background-color: #fffafa; 
+            /* 2. 폰트 적용 */
+            font-family: 'Gowun Batang', serif; 
+            margin: 0; 
+            padding-top: 50px; 
+            overflow-x: hidden; 
+        }
+        .container { max-width: 500px; margin: 0 auto; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 15px 35px rgba(255,182,193,0.3); position: relative; }
+        
+        h1 { color: black; font-size: 2.2em; margin-bottom: 20px; font-weight: 700; }
+        p { line-height: 1.6; color: #333; font-size: 1.1em; }
+        
+        .main-img { width: 100%; max-width: 280px; min-height: 300px; border-radius: 20px; margin: 20px 0; border: 3px solid #ffe4e1; object-fit: cover; background-color: #f9f9f9; }
+        
+        .face-container { display: flex; justify-content: space-between; align-items: center; margin: 30px 0; position: relative; height: 120px; }
+        .face-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #ffb6c1; background-color: #f9f9f9; }
+        
+        .arrow { font-size: 2.5em; color: #ff4081; position: absolute; left: 110px; top: 50%; transform: translateY(-50%); opacity: 0; pointer-events: none; }
         @keyframes shootArrow {
             0% { left: 110px; opacity: 0; }
             10% { opacity: 1; }
-            90% { left: calc(100% - 130px); opacity: 1; }
-            100% { left: calc(100% - 130px); opacity: 0; }
+            90% { left: calc(100% - 140px); opacity: 1; }
+            100% { left: calc(100% - 140px); opacity: 0; }
         }
+        .active .arrow { animation: shootArrow 1.2s ease-in-out infinite; }
 
-        #page2.active .arrow { animation: shootArrow 1s ease-in-out infinite; }
-
-        /* 도망가는 버튼 스타일 */
-        #noBtn { position: absolute; background-color: #ddd; color: #888; transition: 0.1s; }
+        button { padding: 15px 30px; font-size: 1.1em; cursor: pointer; border-radius: 50px; border: none; background-color: #ffb6c1; color: white; transition: 0.3s; margin-top: 20px; font-weight: bold; font-family: 'Gowun Batang', serif; }
+        button:hover { background-color: #ff80ab; transform: scale(1.05); }
+        
+        #page2, #page3 { display: none; }
+        
         .btn-wrapper { position: relative; height: 150px; margin-top: 30px; }
+        #noBtn { position: absolute; background-color: #ddd; color: #888; transition: 0.1s; border-radius: 50px; }
     </style>
 </head>
 <body>
@@ -39,30 +54,28 @@
     <div class="container">
         <div id="page1">
             <h1>오빠의 26번째 생일을 축하해 ❤️</h1>
-            <img src="our.jpg" alt="오빠 단독 사진" class="main-img">
-            <p>세상에서 가장 빛나는 우리 오빠!<br>26살의 시작을 함께해서 너무 행복해.</p>
-            <button onclick="showPage(2)">오빠의 매력 확인하기 👉</button>
+            <img src="our.jpg" alt="우리 사진" class="main-img" decoding="async">
+            <p>스물하나 스물셋에 만나서<br>스물넷 스물여섯이 되다니! 올해도 행복하자</p>
+            <button onclick="showPage(2)">다음으로 👉</button>
         </div>
 
         <div id="page2">
-            <h1>내가 사랑하는 오빠의 모습들 ✨</h1>
-            
+            <h1>오빠를 향한 나의 마음 ✨</h1>
             <div class="face-container">
-                <img src="sj.png" alt="내 얼굴" class="face-img">
+                <img src="sj.png" alt="내 얼굴" class="face-img" decoding="async">
                 <span class="arrow">💘</span>
-                <img src="op.png" alt="오빠 얼굴" class="face-img">
+                <img src="op.png" alt="오빠 얼굴" class="face-img" decoding="async">
             </div>
-
-            <p style="margin-top: 20px;">웃을 때 예쁜 눈, 다정한 말투,<br>그리고 나를 누구보다 아껴주는 마음까지!</p>
-            <p>오빠는 나에게 가장 완벽한 사람이야.</p>
+            <p>오빠랑 있을 때가 가장 즐겁고 행복해<br>오빠도 그렇지?</p>
+            <p>오래오래 함께하자 🥰</p>
             <button onclick="showPage(3)">마지막으로 할 말! 👉</button>
         </div>
 
         <div id="page3">
-            <h1>마지막으로 질문! 🧐</h1>
+            <h1>마지막으로! 🧐</h1>
             <p>내년 생일도, 내후년 생일도<br>쭉~ 나랑 같이 보낼 거지?</p>
             <div class="btn-wrapper">
-                <button onclick="alert('역시! 내년에도 내가 제일 먼저 축하해줄게! 사랑해 ❤️')">당연하지! ❤️</button>
+                <button onclick="alert('역시 그럴 줄 알았어! ❤️ 내년에도 내가 가장 먼저 축하해줄게!')">당연하지! ❤️</button>
                 <button id="noBtn" onmouseover="moveButton()">아니오</button>
             </div>
         </div>
@@ -71,18 +84,20 @@
     <script>
         function showPage(pageNr) {
             document.getElementById('page1').style.display = 'none';
-            document.getElementById('page1').classList.remove('active');
             document.getElementById('page2').style.display = 'none';
-            document.getElementById('page2').classList.remove('active');
             document.getElementById('page3').style.display = 'none';
+            
+            document.getElementById('page1').classList.remove('active');
+            document.getElementById('page2').classList.remove('active');
             document.getElementById('page3').classList.remove('active');
 
-            document.getElementById('page' + pageNr).style.display = 'block';
-            document.getElementById('page' + pageNr).classList.add('active'); // 애니메이션 트리거
+            const currentPage = document.getElementById('page' + pageNr);
+            currentPage.style.display = 'block';
+            currentPage.classList.add('active');
         }
 
         function moveButton() {
-            // 버튼이 화면 밖으로 나가지 않게 범위 조절
+            // 버튼이 도망가는 범위가 너무 넓지 않게 수정
             const x = Math.random() * (window.innerWidth - 100);
             const y = Math.random() * (window.innerHeight - 100);
             const noBtn = document.getElementById('noBtn');
