@@ -20,7 +20,7 @@
             padding-top: 50px; 
             overflow-x: hidden; 
         }
-        .container { max-width: 500px; margin: 0 auto; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 15px 35px rgba(255,182,193,0.3); position: relative; }
+        .container { max-width: 500px; margin: 0 auto; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 15px 35px rgba(255,182,193,0.3); position: relative; min-height: 500px; }
         
         h1 { color: black; font-size: 2.2em; margin-bottom: 20px; font-weight: 700; }
         p { line-height: 1.6; color: #333; font-size: 1.1em; }
@@ -39,13 +39,14 @@
         }
         .active .arrow { animation: shootArrow 1.2s ease-in-out infinite; }
 
-        button { padding: 15px 30px; font-size: 1.1em; cursor: pointer; border-radius: 50px; border: none; background-color: #ffb6c1; color: white; transition: 0.3s; margin-top: 20px; font-weight: bold; font-family: 'Gowun Batang', serif; }
+        button { padding: 15px 30px; font-size: 1.1em; cursor: pointer; border-radius: 50px; border: none; background-color: #ffb6c1; color: white; transition: 0.3s; margin-top: 20px; font-weight: bold; font-family: 'Gowun Batang', serif; position: relative; z-index: 5; }
         button:hover { background-color: #ff80ab; transform: scale(1.05); }
         
         #page2, #page3 { display: none; }
         
-        .btn-wrapper { position: relative; height: 200px; margin-top: 30px; }
-        #noBtn { position: absolute; background-color: #ddd; color: #888; transition: 0.1s; border-radius: 50px; z-index: 10; }
+        /* 3페이지 버튼 영역 고정 */
+        .btn-wrapper { position: relative; height: 250px; margin-top: 30px; border: 1px dashed #eee; border-radius: 20px; }
+        #noBtn { position: absolute; background-color: #ddd; color: #888; transition: 0.1s; border-radius: 50px; white-space: nowrap; }
     </style>
 </head>
 <body>
@@ -53,5 +54,67 @@
     <div class="container">
         <div id="page1">
             <h1>오빠의 26번째 생일을 축하해 ❤️</h1>
-            <img src="our.jpg" alt="우리 사진" class="main-img" decoding="async">
+            <img src="our.jpg" alt="우리 사진" class="main-img" fetchpriority="high">
             <p>스물하나 스물셋에 만나서<br>스물넷 스물여섯이 되다니! 올해도 행복하자</p>
+            <button onclick="showPage(2)">다음으로 👉</button>
+        </div>
+
+        <div id="page2">
+            <h1>오빠를 향한 나의 마음 ✨</h1>
+            <div class="face-container">
+                <img src="sj.png" alt="내 얼굴" class="face-img" loading="eager">
+                <span class="arrow">💘</span>
+                <img src="op.png" alt="오빠 얼굴" class="face-img" loading="eager">
+            </div>
+            <p>오빠랑 있을 때가 가장 즐겁고 행복해<br>오빠도 그렇지?</p>
+            <p>오래오래 함께하자 🥰</p>
+            <button onclick="showPage(3)">마지막으로 할 말! 👉</button>
+        </div>
+
+        <div id="page3">
+            <h1>마지막으로! 🧐</h1>
+            <p>내년 생일도, 내후년 생일도<br>쭉~ 나랑 같이 보낼 거지?</p>
+            <div class="btn-wrapper">
+                <button onclick="alert('역시 그럴 줄 알았어! ❤️ 내년에도 내가 가장 먼저 축하해줄게!')">당연하지! ❤️</button>
+                <button id="noBtn" onmouseover="moveButton()">아니오</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 페이지 전환 함수 (버튼 작동의 핵심!)
+        function showPage(pageNr) {
+            document.getElementById('page1').style.display = 'none';
+            document.getElementById('page2').style.display = 'none';
+            document.getElementById('page3').style.display = 'none';
+            
+            document.getElementById('page1').classList.remove('active');
+            document.getElementById('page2').classList.remove('active');
+            document.getElementById('page3').classList.remove('active');
+
+            const currentPage = document.getElementById('page' + pageNr);
+            currentPage.style.display = 'block';
+            currentPage.classList.add('active');
+            
+            // 페이지 이동 시 화면 맨 위로 스크롤
+            window.scrollTo(0, 0);
+        }
+
+        // 아니오 버튼 가두기 함수
+        function moveButton() {
+            const wrapper = document.querySelector('.btn-wrapper');
+            const noBtn = document.getElementById('noBtn');
+
+            // wrapper 박스 기준으로 위치 계산
+            const maxWidth = wrapper.clientWidth - noBtn.offsetWidth;
+            const maxHeight = wrapper.clientHeight - noBtn.offsetHeight;
+
+            const randomX = Math.floor(Math.random() * maxWidth);
+            const randomY = Math.floor(Math.random() * maxHeight);
+
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+    </script>
+</body>
+</html>
